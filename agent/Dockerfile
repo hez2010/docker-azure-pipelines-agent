@@ -51,10 +51,6 @@ USER root
 RUN curl -fsS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && apt-get -y --no-install-recommends install yarn
-# chrome:
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    gdebi --non-interactive google-chrome-stable_current_amd64.deb && \
-    rm google-chrome-stable_current_amd64.deb
 # kubectl:
 RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list && \
@@ -96,6 +92,7 @@ COPY configureAgent.sh runAgent.sh configureAndRun.sh /agent/
 RUN chmod +x configureAndRun.sh configureAgent.sh runAgent.sh && \
     chown agentuser:agentuser configureAgent.sh runAgent.sh configureAndRun.sh
 RUN chown -R agentuser:agentuser /agent
+ENV AZP_AGENT_DOWNGRADE_DISABLED="true"
 USER agentuser
 STOPSIGNAL SIGINT
 CMD [ "/agent/configureAndRun.sh" ]
