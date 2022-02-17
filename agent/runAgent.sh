@@ -5,6 +5,7 @@ if [ "$DEBUG" == 'true' ]; then
 fi
 set -eo pipefail
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export AZP_AGENT_DOWNGRADE_DISABLED="true"
 
 trap cleanup SIGINT
 
