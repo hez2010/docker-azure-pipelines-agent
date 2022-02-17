@@ -5,8 +5,8 @@ if [ "$DEBUG" == 'true' ]; then
 fi
 set -eo pipefail
 if [ -z $AGENT_POOL ]; then AGENT_POOL=Default; fi
-if [ -z $VS_TENANT ]; then
-  >&2 echo 'Variable "$VS_TENANT" is not set.'
+if [ -z $AGENT_URL ]; then
+  >&2 echo 'Variable "$AGENT_URL" is not set.'
   exit 1
 fi
 if [ -z $AGENT_PAT ]; then
@@ -14,7 +14,7 @@ if [ -z $AGENT_PAT ]; then
   exit 2
 fi
 if [ ! -f $DIR/.credentials ]; then
-  vs_tenant=$VS_TENANT
+  agent_url=$AGENT_URL
   agent_pool=$AGENT_POOL
   agent_pat=$AGENT_PAT
   export DOTNET_VERSION=$(dotnet --version)
@@ -23,9 +23,9 @@ if [ ! -f $DIR/.credentials ]; then
     sudo mkdir -p $work_dir
   fi
   sudo chown -R agentuser:agentuser $work_dir
-  $DIR/bin/Agent.Listener configure --url https://dev.azure.com/$vs_tenant --pool $agent_pool --auth PAT --token $agent_pat --agent $(hostname) --work $work_dir --unattended
+  $DIR/bin/Agent.Listener configure --url https://dev.azure.com/$agent_url --pool $agent_pool --auth PAT --token $agent_pat --agent $(hostname) --work $work_dir --unattended
   check $?
 fi
 unset AGENT_PAT
 unset AGENT_POOL
-unset VS_TENANT
+unset AGENT_URL

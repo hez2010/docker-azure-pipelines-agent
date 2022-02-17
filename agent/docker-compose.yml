@@ -7,7 +7,7 @@ services:
     environment:
       AGENT_PAT:
       AGENT_POOL:
-      VS_TENANT:
+      AGENT_URL:
     stdin_open: true
     tty: true
     restart: always
