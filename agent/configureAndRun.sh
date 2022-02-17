@@ -42,7 +42,7 @@ ifRun() {
 }
 
 echo Starting supervisord in the background...
-/usr/bin/supervisord -n >> /dev/null 2>&1 &
+/usr/bin/supervisord -n &
 echo Starting configuration for $(hostname)...
 ifRun preConfigure.sh
 . $DIR/configureAgent.sh
