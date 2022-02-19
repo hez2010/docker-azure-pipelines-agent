@@ -6,6 +6,8 @@ This project allows the Azure Pipelines Agent to run on Docker or Kubernetes (wi
 
 Use: `docker pull ghcr.io/hez2010/docker-azure-pipelines-agent:main`
 
+**You need to run the docker as privileged**
+
 ## Configuration
 
 You need to set these environment variables:
