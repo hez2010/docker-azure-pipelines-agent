@@ -120,6 +120,9 @@ COPY configureAgent.sh runAgent.sh configureAndRun.sh /agent/
 RUN chmod +x configureAndRun.sh configureAgent.sh runAgent.sh && \
     chown agentuser:agentuser configureAgent.sh runAgent.sh configureAndRun.sh
 RUN chown -R agentuser:agentuser /agent
+USER root
+RUN groupadd -g 999 docker && \
+    usermod -a -G docker agentuser
 USER agentuser
 STOPSIGNAL SIGINT
 CMD [ "/agent/configureAndRun.sh" ]
