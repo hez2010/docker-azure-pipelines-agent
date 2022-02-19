@@ -8,15 +8,13 @@ Use: `docker pull ghcr.io/hez2010/docker-azure-pipelines-agent:main`
 
 ## Configuration
 
-For `latest`, you need to set these environment variables:
-
+You need to set these environment variables:
 
 - `AGENT_PAT`: The personal access token from Azure Pipelines. Required. See
   [Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#authenticate-with-a-personal-access-token-pat) for instructions on how to create the PAT.
 - `AGENT_POOL`: The agent pool. Optional. Default value: `Default`
 - `AGENT_URL`: The URL of tenant.
 - `AGENT_DOCKER_MTU_VALUE`: making sure it is less than the host docker MTU value, or you'll face networking issue
-
 
 ## License
 
