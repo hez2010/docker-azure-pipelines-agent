@@ -113,7 +113,7 @@ RUN wget -q https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_lin
 # cleanup
 RUN apt-get autoremove -y
 # agent:
-RUN curl -fSsL https://vstsagentpackage.azureedge.net/agent/2.200.2/vsts-agent-linux-x64-2.200.2.tar.gz -o /agent/vsts-agent.tar.gz && \
+RUN curl -fSsL https://vstsagentpackage.azureedge.net/agent/2.202.0/vsts-agent-linux-x64-2.202.0.tar.gz -o /agent/vsts-agent.tar.gz && \
     tar xzf /agent/vsts-agent.tar.gz && \
     rm /agent/vsts-agent.tar.gz
 COPY configureAgent.sh runAgent.sh configureAndRun.sh /agent/
